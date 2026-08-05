@@ -43,6 +43,9 @@ import { isLogin } from "../middleware/isLogin.js";
 import { profile } from "../controller/user_info/profile.js";
 import { upload } from "../middleware/multer.js";
 import { updatePic } from "../controller/user_info/updatePic.js";
+import { productData } from "../controller/products.js";
+import { findProduct } from "../controller/product_findWith_id.js";
+import { addProductInCart } from "../controller/addProductInCart.js";
 
 const router = Router();
 
@@ -98,5 +101,14 @@ router.get('/profile', isLogin, profile)
 
 // Update Profile Picture
 router.put('/updatepic', upload.single("img"), updatePic)
+
+// Get data of all Products.
+router.get('/find_product', productData)
+
+// Get Product with ID
+router.get('/product_id/:id', findProduct)
+
+// Add Product in Cart
+router.post('/add_cart', addProductInCart)
 
 export {router}

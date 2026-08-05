@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
+import { successtoast } from '../../utils/toast.js';
 
 const Belt_card = () => {
     const [getData, setGetData] = useState({});
     const [quntity, setQuntity] = useState(1);
     const [loading, setLoading] = useState(true);
-    const { id } = useParams();
+    const { id } = useParams();    
 
     const fetchProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/ecommerce/v1/belt/${id}`)
+            const response = await axios.get(`http://localhost:4000/ecommerce/v1/product_id/${id}`)
             setGetData(response.data.data)
-            // console.log(response.data);
+        
         } catch (error) {
-            console.log("data is not fetch:", error);
+            console.log("data is not fetch:", error.response);
         } finally {
             setLoading(false)
         }
@@ -26,13 +27,16 @@ const Belt_card = () => {
         fetchProduct();
     }, [id])
 
-    // const addCart = async() => {
-    //     try {
-    //         const response = await axios.post(``, id, )
-    //     } catch (error) {
-    //         console.log("error: ", error)
-    //     }
-    // }
+    // add Product in Cart
+    const addToCart = async(id) => {        
+        try {
+            const response = await axios.post(`http://localhost:4000/ecommerce/v1/add_cart`, { id }, { withCredentials: true } )
+
+            successtoast(response.data.message)            
+        } catch (error) {
+            console.log("error: ", error.response.data)
+        }
+    }
 
     return (
         <div className='h-screen w-full p-16'>
@@ -82,7 +86,7 @@ const Belt_card = () => {
                                 <h1 className='text-lg font-bold'> Total price: {totalPrice} </h1>
                             </div>
 
-                            <button 
+                            <button onClick={() => addToCart(getData._id)}
                                 className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-yellow-300 active:scale-95'>
                                 Add to cart
                             </button>

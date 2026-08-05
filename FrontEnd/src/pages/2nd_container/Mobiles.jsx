@@ -1,8 +1,23 @@
-import { useSelector } from "react-redux"
+import { useState, useEffect } from "react"
+import axios from "axios";
 import { Link } from "react-router-dom"
 
 const Mobiles = () => {
-  const mobiles = useSelector(state => state.mobileSlice)
+  const [mobiles, setMobiles] = useState([]);
+
+  const data = async () => {
+        try {
+            const response = await axios.get(`http://localhost:4000/ecommerce/v1/find_product?items=mobile`)
+            
+            setMobiles(response.data.data)
+        } catch (error) {
+            console.log('data is not fetch', error.response);
+        }
+    }
+
+    useEffect(() => {
+        data();
+    }, [])
 
   return (
     <div className='min-h-screen w-full py-6 px-7 flex flex-wrap gap-5'>

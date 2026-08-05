@@ -1,14 +1,29 @@
 import { Heart } from 'lucide-react'
-import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Perfume = () => {
-    const perfumes = useSelector(state => state.perfumeSlice)
+    const [perfumes, setPerfumes] = useState([]);
+
+    const data = async () => {
+        try {
+            const response = await axios.get(`http://localhost:4000/ecommerce/v1/find_product?items=perfume`)
+            
+            setPerfumes(response.data.data)
+        } catch (error) {
+            console.log('data is not fetch', error.response);
+        }
+    }
+
+    useEffect(() => {
+        data();
+    }, [])
 
     return (
         <div className='min-h-screen w-full py-7 bg-gray-200 flex flex-col gap-5  '>
             <div className='h-full w-full px-6 flex flex-wrap items-center gap-10'>
-                {
+                { 
                     perfumes.map((data) => (
                         <Link key={data._id} to={`/app/perfume/perfume_card/${data._id}`}>
                             <div key={data._id} className='h-[60vh] w-[43vh] pt-4 rounded-xl flex flex-col items-center bg-white hover:shadow-[0_0_20px_rgba(0,0,0,0.3)]'>

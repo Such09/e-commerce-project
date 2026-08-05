@@ -9,7 +9,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Content from './components/Content.jsx'
 import Shose from './pages/1st_container/Shose.jsx'
 import Watch from './pages/1st_container/Watch.jsx'
-import Belt from './pages/1st_container/belt.jsx'
+import Belt from './pages/1st_container/Belt.jsx'
 import Books from './pages/1st_container/Books.jsx'
 import Shirt from './pages/1st_container/Shirt.jsx'
 import Perfume from './pages/1st_container/Perfume.jsx'

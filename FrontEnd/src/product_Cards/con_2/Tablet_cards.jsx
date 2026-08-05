@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
+import { successtoast } from '../../utils/toast.js';
 
 const Tablet_card = () => {
     const [getData, setGetData] = useState({});
@@ -10,7 +11,7 @@ const Tablet_card = () => {
 
     const fetchProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/ecommerce/v1/tablet/${id}`)
+            const response = await axios.get(`http://localhost:4000/ecommerce/v1/product_id/${id}`)
             setGetData(response.data.data)
             // console.log(response.data);
         } catch (error) {
@@ -25,6 +26,17 @@ const Tablet_card = () => {
     useEffect(() => {
         fetchProduct();
     }, [id])
+
+    // add Product in Cart
+    const addToCart = async (id) => {
+        try {
+            const response = await axios.post(`http://localhost:4000/ecommerce/v1/add_cart`, { id }, { withCredentials: true })
+
+            successtoast(response.data.message)
+        } catch (error) {
+            console.log("error: ", error.response.data)
+        }
+    }
 
     return (
         <div className='h-screen w-full p-16'>
@@ -55,7 +67,7 @@ const Tablet_card = () => {
                                 <h1 className='font-medium text-green-800'> {getData.todayOff} </h1>
                             </div>
 
-                            <h1> { getData.tag } </h1>
+                            <h1> {getData.tag} </h1>
                         </div>
 
                         <div className='w-full px-3 py-4 flex flex-col gap-3 border-2 border-gray-400/35 rounded'>
@@ -79,7 +91,8 @@ const Tablet_card = () => {
                                 <h1 className='text-lg font-bold'> Total price: {totalPrice} </h1>
                             </div>
 
-                            <button className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-yellow-300 active:scale-95'>
+                            <button onClick={() => addToCart(getData._id)}
+                                className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-yellow-300 active:scale-95'>
                                 Add to cart
                             </button>
 

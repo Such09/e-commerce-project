@@ -5,7 +5,7 @@ const Content = () => {
     const provider1 = useSelector(state => state.slice1)
     const provider2 = useSelector(state => state.slice2)
     const provider3 = useSelector(state => state.slice3)
-    // console.log('provider is: ', provider3);
+    // console.log('provider is: ', provider2);
 
     return (
         <div className='min-h-screen w-full pb-10 bg-gray-200 flex flex-col gap-5  '>

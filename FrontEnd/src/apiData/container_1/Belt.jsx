@@ -8,8 +8,8 @@ const Belt = () => {
 
     const data = async() => {
         try {
-            const response = await axios.get(`http://localhost:4000/ecommerce/v1/belt`)
-            // console.log(response.data);
+            const response = await axios.get(`http://localhost:4000/ecommerce/v1/find_product?items=belt`)
+            console.log(response);
 
             dispatch(beltCollection(response.data.data))                        
         } catch (error) {
@@ -18,7 +18,7 @@ const Belt = () => {
     }
 
     useEffect(() => {
-        data();
+        // data();
     },[])
   return (
     <div></div>

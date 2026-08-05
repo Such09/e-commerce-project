@@ -1,9 +1,24 @@
 import { Heart } from 'lucide-react'
-import { useSelector } from 'react-redux'
+import { useState,useEffect } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const Tabs = () => {
-  const tabletData = useSelector(state => state.tabletSlice)
+  const [tabletData, setTabletData] = useState([]);
+  
+  const data = async () => {
+        try {
+            const response = await axios.get(`http://localhost:4000/ecommerce/v1/find_product?items=tablet`)
+            
+            setTabletData(response.data.data)
+        } catch (error) {
+            console.log('data is not fetch', error.response);
+        }
+    }
+
+    useEffect(() => {
+        data();
+    }, [])
 
   return (
     <div className='min-h-screen w-full py-7 bg-gray-200 flex flex-col gap-5  '>

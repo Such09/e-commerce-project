@@ -18,7 +18,7 @@ const Book = () => {
     }
 
     useEffect(() => {
-        data();
+        // data();
     },[])
   return (
     <div></div>

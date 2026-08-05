@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
+import { successtoast } from '../../utils/toast.js';
 
 const Watch_card = () => {
     const [getData, setGetData] = useState({});
@@ -10,7 +11,7 @@ const Watch_card = () => {
 
     const fetchProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/ecommerce/v1/watch/${id}`)
+            const response = await axios.get(`http://localhost:4000/ecommerce/v1/product_id/${id}`)
             setGetData(response.data.data)
             // console.log(response.data);
         } catch (error) {
@@ -25,6 +26,17 @@ const Watch_card = () => {
     useEffect(() => {
         fetchProduct();
     }, [id])
+
+    // add Product in Cart
+    const addToCart = async (id) => {
+        try {
+            const response = await axios.post(`http://localhost:4000/ecommerce/v1/add_cart`, { id }, { withCredentials: true })
+
+            successtoast(response.data.message)
+        } catch (error) {
+            console.log("error: ", error.response.data)
+        }
+    }
 
     return (
         <div className='h-screen w-full p-16'>
@@ -42,6 +54,7 @@ const Watch_card = () => {
                     <div className='h-full w-1/2 px-4 flex flex-col gap-5'>
                         <div className='w-full p-3 flex flex-col gap-2 border-2 border-gray-400/35 rounded'>
                             <h1 className='text-lg font-medium'> {getData.brand} </h1>
+                            <h1 className='font-medium'> {getData.model_name} </h1>
 
                             <p className='text-lg font-medium text-gray-500'> {getData.description} </p>
 
@@ -73,7 +86,8 @@ const Watch_card = () => {
                                 <h1 className='text-lg font-bold'> Total price: {totalPrice} </h1>
                             </div>
 
-                            <button className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-yellow-300 active:scale-95'>
+                            <button onClick={() => addToCart(getData._id)}
+                                className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-yellow-300 active:scale-95'>
                                 Add to cart
                             </button>
 
