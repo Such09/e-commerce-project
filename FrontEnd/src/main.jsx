@@ -32,6 +32,7 @@ import Tablet_card from './product_Cards/con_2/Tablet_cards.jsx'
 import Kurti_card from './product_Cards/con_3/Kurti_cards.jsx'
 import SearchingData from './pages/Searching_Data/SearchingData.jsx'
 import Profile from './pages/User_info/Profile.jsx'
+import Cart from './pages/User_info/Cart.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -54,20 +55,19 @@ const router = createBrowserRouter(
         <Route path='contact' element={<Contact />} />
         <Route path='shoes/shoes_card/:id' element={<ProductView />} />
         <Route path='belt/belt_card/:id' element={<Belt_card />} />
-        <Route path='watch/watch_cards/:id' element={<Watch_card />} />
+        <Route path='watch/watch_card/:id' element={<Watch_card />} />
         <Route path='perfume/perfume_card/:id' element={<Perfume_card />} />
-        <Route path='books/book_cards/:id' element={<Book_card />} />
-        <Route path='shirts/shirt_cards/:id' element={<Shirt_card />} />
-        <Route path='mobiles/mobile_card/:id' element={<Mobile_card />} />
-        <Route path='laptops/laptop_card/:id' element={<Laptop_card />} />
-        <Route path='tabs/tablet_card/:id' element={<Tablet_card />} />
+        <Route path='book/book_card/:id' element={<Book_card />} />
+        <Route path='shirt/shirt_card/:id' element={<Shirt_card />} />
+        <Route path='mobile/mobile_card/:id' element={<Mobile_card />} />
+        <Route path='laptop/laptop_card/:id' element={<Laptop_card />} />
+        <Route path='tablet/tablet_card/:id' element={<Tablet_card />} />
         <Route path='kurti/kurti_card/:id' element={<Kurti_card />} />
 
-        {/* Searching data */}
+        {/* NavBar  */}
         <Route path='search/product' element={<SearchingData />} />
-
-        {/* User details */}
         <Route path='profile' element={<Profile />} />
+        <Route path='cart' element = { <Cart /> } />
 
       </Route>
     </>

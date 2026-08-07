@@ -2,14 +2,15 @@ import { Heart } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+// import { useDispatch } from 'react-redux'
+// import { storeProducts } from '../../reduxStore/productStore.js'
 
 const Belt = () => {
   const [belts, setBelts] = useState([]);
 
-  const data = async () => {    
+  const data = async () => {
     try {
       const response = await axios.get(`http://localhost:4000/ecommerce/v1/find_product?items=belt`)
-      
       setBelts(response.data.data)
     } catch (error) {
       console.log('data is not fetch', error.response);
@@ -26,7 +27,7 @@ const Belt = () => {
         {
           belts.map((data) => (
             <Link key={data._id} to={`/app/belt/belt_card/${data._id}`}>
-              <div key={data._id} className='h-[60vh] w-[43vh] pt-4 rounded-xl flex flex-col items-center bg-white hover:shadow-[0_0_20px_rgba(0,0,0,0.3)]'>
+              <div key={data._id} className='h-[60vh] w-[43vh] pt-4 rounded-xl flex flex-col items-center bg-white hover:shadow-2xl'>
                 <div className='h-[40vh] w-[37vh] rounded-xl'>
                   <Heart className='absolute ml-[33vh]' size={28} strokeWidth={1.25} />
                   <img className='h-full w-full object-contain rounded-xl' src={data.image} alt="" />

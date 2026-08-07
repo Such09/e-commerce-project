@@ -35,7 +35,7 @@ const Watch = () => {
             <div key={data.id} className='h-[60vh] w-[43vh] pt-4 rounded-xl flex flex-col items-center bg-white hover:shadow-[0_0_20px_rgba(0,0,0,0.3)]'>
               <div className='h-[40vh] w-[37vh] rounded-xl'>
 
-                <Link key={data._id} to={`/app/watch/watch_cards/${data._id}`} >
+                <Link key={data._id} to={`/app/watch/watch_card/${data._id}`} >
                   <img className='h-full w-full object-contain rounded-xl' src={data.image} alt="" />
                 </Link>
               </div>

@@ -17,7 +17,8 @@ import { upload } from "../middleware/multer.js";
 import { updatePic } from "../controller/user_info/updatePic.js";
 import { productData } from "../controller/products.js";
 import { findProduct } from "../controller/product_findWith_id.js";
-import { addProductInCart } from "../controller/addProductInCart.js";
+import { addProductInCart, removeCart } from "../controller/addProductInCart.js";
+import { cartItems } from "../controller/user_info/cartItems.js";
 
 const router = Router();
 
@@ -37,6 +38,7 @@ router.get('/product', searchData)
 
 // Sensetive information and user details
 router.get('/profile', isLogin, profile)
+router.get('/cart_item', isLogin, cartItems)
 
 // Update Profile Picture
 router.put('/updatepic', upload.single("img"), updatePic)
@@ -48,6 +50,7 @@ router.get('/find_product', productData)
 router.get('/product_id/:id', findProduct)
 
 // Add Product in Cart
-router.post('/add_cart', addProductInCart)
+router.post('/add_cart', isLogin, addProductInCart)
+router.put('/remove_cart', isLogin, removeCart)
 
 export {router}

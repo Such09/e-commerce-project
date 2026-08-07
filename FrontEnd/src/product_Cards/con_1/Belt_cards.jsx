@@ -7,13 +7,14 @@ const Belt_card = () => {
     const [getData, setGetData] = useState({});
     const [quntity, setQuntity] = useState(1);
     const [loading, setLoading] = useState(true);
-    const { id } = useParams();    
+    const [isAddCart, setIsAddCart] = useState(true);
+    const { id } = useParams();
 
     const fetchProduct = async () => {
         try {
             const response = await axios.get(`http://localhost:4000/ecommerce/v1/product_id/${id}`)
             setGetData(response.data.data)
-        
+
         } catch (error) {
             console.log("data is not fetch:", error.response);
         } finally {
@@ -27,14 +28,21 @@ const Belt_card = () => {
         fetchProduct();
     }, [id])
 
-    // add Product in Cart
-    const addToCart = async(id) => {        
+    // add & removeProduct in Cart
+    const addToCart = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:4000/ecommerce/v1/add_cart`, { id }, { withCredentials: true } )
+            if (isAddCart) {
+                const response = await axios.post(`http://localhost:4000/ecommerce/v1/add_cart`, { id }, { withCredentials: true })
+                successtoast(response.data.message)
 
-            successtoast(response.data.message)            
+            }else{
+                const response = await axios.put(`http://localhost:4000/ecommerce/v1/remove_cart`, { id }, { withCredentials: true })                
+                successtoast(response.data.message)
+            }
         } catch (error) {
             console.log("error: ", error.response.data)
+        } finally {
+            setIsAddCart(!isAddCart)
         }
     }
 
@@ -88,7 +96,7 @@ const Belt_card = () => {
 
                             <button onClick={() => addToCart(getData._id)}
                                 className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-yellow-300 active:scale-95'>
-                                Add to cart
+                                { isAddCart ? <h1> Add to cart </h1> : <h1> Remove to cart </h1> }
                             </button>
 
                             <button className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-amber-500 active:scale-95'>

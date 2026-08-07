@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import { SquarePen } from 'lucide-react';
-import { successtoast } from '../../utils/toast';
+import { successtoast, errortoast } from '../../utils/toast';
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -20,7 +20,6 @@ const Profile = () => {
         try {
             const response = await axios.get(`http://localhost:4000/ecommerce/v1/profile`, { withCredentials: true })
             setInfo(response.data.data)
-            console.log('res: ', response.data.data);
 
         } catch (error) {
             if (error.response.status === 401) {
@@ -34,13 +33,14 @@ const Profile = () => {
         e.preventDefault();
 
         try {
-            console.log("update pic")
             const response = await axios.put(`http://localhost:4000/ecommerce/v1/updatepic`, formData, { withCredentials: true })
             setProfilePicture(response.data.picture)
             successtoast(response.data.message)
 
         } catch (error) {
             console.log("profile picture error: ", error.response);
+        } finally {
+            setImg(null)
         }
     }
 
@@ -123,12 +123,14 @@ const Profile = () => {
                             <div className='flex gap-2'>
                                 <input type="file" name='img'
                                     onChange={(e) => setImg(e.target.files[0])}
+                                    value={img}
+                                    required
                                     className=' h-7 w-36 px-1 border border-gray-400 rounded flex justify-center' />
 
                                 <h1 className='font-medium'>choose file</h1>
                             </div>
 
-                            <button className='w-1/6 px-2 py-1 text-white bg-blue-600 rounded'>
+                            <button className='w-1/6 px-2 py-1 text-white bg-blue-600 rounded active:scale-95'>
                                 Update
                             </button>
                         </form>

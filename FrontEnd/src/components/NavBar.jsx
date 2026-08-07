@@ -78,10 +78,9 @@ const NavBar = () => {
             </Link>
 
             {/* Cart */}
-            <Link className='max-w-fit px-2 h-14 flex justify-center items-center gap-2'>
-                <ShoppingCart size={32} color="#fcfcfc" strokeWidth={2} />
+            <Link to={`/app/cart`} className='max-w-fit px-2 h-14 flex justify-center items-center gap-1'>
+                <ShoppingCart size={30} color="#fcfcfc" strokeWidth={1.75} />
                 <h1 className='text-white font-medium'>Cart</h1>
-
             </Link>
 
             <button onClick={logoutUser}

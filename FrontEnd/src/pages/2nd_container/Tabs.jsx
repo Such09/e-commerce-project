@@ -25,7 +25,7 @@ const Tabs = () => {
       <div className='h-full w-full px-6 flex flex-wrap items-center gap-10'>
         {
           tabletData.map((data) => (
-            <Link key={data._id} to={`/app/tabs/tablet_card/${data._id}`}>
+            <Link key={data._id} to={`/app/tablet/tablet_card/${data._id}`}>
               <div key={data._id} className='h-[60vh] w-[43vh] pt-4 rounded-xl flex flex-col items-center bg-white hover:shadow-[0_0_20px_rgba(0,0,0,0.3)]'>
                 <div className='h-[40vh] w-[37vh] rounded-xl'>
                   <Heart className='absolute ml-[33vh]' size={24} strokeWidth={1.25} />
@@ -35,7 +35,7 @@ const Tabs = () => {
                 <div className='h-[18vh] w-[45vh] py-2 px-7 flex flex-col gap-1'>
                   <div className='flex gap-2'>
                     <p className='font-bold'> {data.brand} </p>
-                    <p> {data.name} </p>
+                    <p> {data.model_name} </p>
                   </div>
 
                   <div className="h-6 flex items-baseline overflow-hidden">
