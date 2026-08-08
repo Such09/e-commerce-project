@@ -1,5 +1,4 @@
-import { dbHome } from "../config/dbConnection.js";
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const productSchema = new Schema({
     category: {
@@ -32,4 +31,4 @@ const productSchema = new Schema({
     },
 })
 
-export const Product = dbHome.model("Product", productSchema)
+export const Product = mongoose.model("Product", productSchema)

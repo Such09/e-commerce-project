@@ -1,5 +1,4 @@
-import { dbHome } from '../config/dbConnection.js';
-import { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const userSchema = new Schema({
     username:{
@@ -27,4 +26,4 @@ const userSchema = new Schema({
     timestamps: true
 })
 
-export const User = dbHome.model("User", userSchema)
+export const User = mongoose.model("User", userSchema)

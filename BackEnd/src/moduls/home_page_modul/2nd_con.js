@@ -1,5 +1,4 @@
-import { Schema } from 'mongoose'
-import { dbHome } from '../../config/dbConnection.js'
+import mongoose, { Schema } from 'mongoose'
 
 const secondConSchema = new Schema({
     id:{
@@ -33,4 +32,4 @@ const secondConSchema = new Schema({
     }
 })
 
-export const Second = dbHome.model("Second", secondConSchema)
+export const Second = mongoose.model("Second", secondConSchema)
