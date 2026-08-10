@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
 import { successtoast } from '../../utils/toast.js';
+import { useNavigate } from 'react-router-dom';
 
 const Shirt_card = () => {
+    const navigate = useNavigate();
     const [getData, setGetData] = useState({});
     const [quntity, setQuntity] = useState(1);
     const [loading, setLoading] = useState(true);
@@ -43,6 +45,19 @@ const Shirt_card = () => {
             console.log("error: ", error.response.data)
         } finally {
             setIsAddCart(!isAddCart)
+        }
+    }
+
+    // plase order 
+    const Order = async(product_id, quntity, total_amount) => {
+        try {
+            let data = {product_id, quntity, total_amount}
+
+            await axios.patch(`http://localhost:4000/ecommerce/v1/order`, data, { withCredentials: true })
+
+            navigate(`/order/${product_id}`);
+        } catch (error) {
+            console.log("order error: ", error)
         }
     }
 
@@ -102,7 +117,8 @@ const Shirt_card = () => {
                                 {isAddCart ? <h1> Add to cart </h1> : <h1> Remove to cart </h1>}
                             </button>
 
-                            <button className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-amber-500 active:scale-95'>
+                            <button onClick={() => Order(getData._id, quntity, totalPrice)}
+                            className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-amber-500 active:scale-95'>
                                 Buy Now
                             </button>
                         </div >

@@ -40,7 +40,7 @@ const Profile = () => {
         } catch (error) {
             console.log("profile picture error: ", error.response);
         } finally {
-            setImg(null)
+            // setImg(null)
         }
     }
 
@@ -123,7 +123,7 @@ const Profile = () => {
                             <div className='flex gap-2'>
                                 <input type="file" name='img'
                                     onChange={(e) => setImg(e.target.files[0])}
-                                    value={img}
+                                    // value={img}
                                     required
                                     className=' h-7 w-36 px-1 border border-gray-400 rounded flex justify-center' />
 

@@ -33,6 +33,9 @@ import Kurti_card from './product_Cards/con_3/Kurti_cards.jsx'
 import SearchingData from './pages/Searching_Data/SearchingData.jsx'
 import Profile from './pages/User_info/Profile.jsx'
 import Cart from './pages/User_info/Cart.jsx'
+import Order_form from './pages/Order_items/Order_form.jsx'
+import Order_conformation from './pages/Order_items/Order_conformation.jsx'
+import Payment from './pages/Order_items/Payment.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -69,7 +72,12 @@ const router = createBrowserRouter(
         <Route path='profile' element={<Profile />} />
         <Route path='cart' element = { <Cart /> } />
 
+        {/* order */}
+        <Route path='order/order_con/:id' element={ <Order_conformation /> } />
       </Route>
+
+      <Route path='/order/:id' element={ <Order_form /> } />
+      <Route path='/order/order_con/payment/:id' element={ <Payment /> } />
     </>
   )
 )

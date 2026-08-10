@@ -19,6 +19,7 @@ import { productData } from "../controller/products.js";
 import { findProduct } from "../controller/product_findWith_id.js";
 import { addProductInCart, removeCart } from "../controller/addProductInCart.js";
 import { cartItems } from "../controller/user_info/cartItems.js";
+import { getData, orderInfo, saveAddress } from "../controller/Order_Product_Controller.js";
 
 const router = Router();
 
@@ -52,5 +53,10 @@ router.get('/product_id/:id', findProduct)
 // Add Product in Cart
 router.post('/add_cart', isLogin, addProductInCart)
 router.put('/remove_cart', isLogin, removeCart)
+
+// Order Product
+router.patch('/order', isLogin, orderInfo)
+router.patch('/address', saveAddress)
+router.get('/order_detail/:id', getData)
 
 export {router}
