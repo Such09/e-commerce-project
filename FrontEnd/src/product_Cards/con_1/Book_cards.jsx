@@ -49,9 +49,9 @@ const Book_card = () => {
     }
 
     // plase order 
-    const Order = async(product_id, quntity, total_amount) => {
+    const Order = async(product_id) => {
         try {
-            let data = {product_id, quntity, total_amount}
+            let data = {product_id}
 
             await axios.patch(`http://localhost:4000/ecommerce/v1/order`, data, { withCredentials: true })
 
@@ -116,7 +116,7 @@ const Book_card = () => {
                                 {isAddCart ? <h1> Add to cart </h1> : <h1> Remove to cart </h1>}
                             </button>
 
-                            <button onClick={() => Order(getData._id, quntity, totalPrice)}
+                            <button onClick={() => Order(getData._id)}
                             className='h-12 w-full text-gray-600 text-lg font-medium rounded-xl bg-amber-500 active:scale-95'>
                                 Buy Now
                             </button>

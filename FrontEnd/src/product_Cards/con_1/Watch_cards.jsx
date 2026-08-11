@@ -49,9 +49,9 @@ const Watch_card = () => {
     }
 
     // plase order 
-    const Order = async(product_id, quntity, total_amount) => {
+    const Order = async(product_id) => {
         try {
-            let data = {product_id, quntity, total_amount}
+            let data = {product_id}
 
             await axios.patch(`http://localhost:4000/ecommerce/v1/order`, data, { withCredentials: true })
 

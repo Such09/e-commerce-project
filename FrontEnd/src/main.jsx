@@ -36,6 +36,7 @@ import Cart from './pages/User_info/Cart.jsx'
 import Order_form from './pages/Order_items/Order_form.jsx'
 import Order_conformation from './pages/Order_items/Order_conformation.jsx'
 import Payment from './pages/Order_items/Payment.jsx'
+import Orders from './pages/User_info/Orders.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -74,6 +75,8 @@ const router = createBrowserRouter(
 
         {/* order */}
         <Route path='order/order_con/:id' element={ <Order_conformation /> } />
+        <Route path='orders' element={ <Orders /> } />
+
       </Route>
 
       <Route path='/order/:id' element={ <Order_form /> } />

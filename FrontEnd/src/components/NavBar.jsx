@@ -72,7 +72,8 @@ const NavBar = () => {
             </Link>
 
             {/* Orders */}
-            <Link className='max-w-fit px-2 h-14 flex justify-center items-center gap-1'>
+            <Link to={`/app/orders`}
+            className='max-w-fit px-2 h-14 flex justify-center items-center gap-1'>
                 <h1 className='text-white font-medium'>Orders</h1>
                 <ChevronDown size={26} color="#fcfcfc" />
             </Link>

@@ -19,44 +19,45 @@ import { productData } from "../controller/products.js";
 import { findProduct } from "../controller/product_findWith_id.js";
 import { addProductInCart, removeCart } from "../controller/addProductInCart.js";
 import { cartItems } from "../controller/user_info/cartItems.js";
-import { getData, orderInfo, saveAddress } from "../controller/Order_Product_Controller.js";
+import { getData, orderInfo, saveAddress, userOrders } from "../controller/Order_Product_Controller.js";
 
 const router = Router();
 
 // Home page router
-router.post('/first', createFirst)
-router.get('/firstcon', firstCon)
-router.get('/second_con', secondCon)
-router.get('/third_con', thirdCon)
+router.post('/first', createFirst);
+router.get('/firstcon', firstCon);
+router.get('/second_con', secondCon);
+router.get('/third_con', thirdCon);
 
 // user data
-router.post('/register', createUser)
-router.post('/login', loginUser)
-router.get('/logout', logoutUser)
+router.post('/register', createUser);
+router.post('/login', loginUser);
+router.get('/logout', logoutUser);
 
 // Searching droducts...
-router.get('/product', searchData)
+router.get('/product', searchData);
 
 // Sensetive information and user details
-router.get('/profile', isLogin, profile)
-router.get('/cart_item', isLogin, cartItems)
+router.get('/profile', isLogin, profile);
+router.get('/cart_item', isLogin, cartItems);
 
 // Update Profile Picture
-router.put('/updatepic', upload.single("img"), updatePic)
+router.put('/updatepic', upload.single("img"), updatePic);
 
 // Get data of all Products.
-router.get('/find_product', productData)
+router.get('/find_product', productData);
 
 // Get Product with ID
-router.get('/product_id/:id', findProduct)
+router.get('/product_id/:id', findProduct);
 
 // Add Product in Cart
-router.post('/add_cart', isLogin, addProductInCart)
-router.put('/remove_cart', isLogin, removeCart)
+router.post('/add_cart', isLogin, addProductInCart);
+router.put('/remove_cart', isLogin, removeCart);
 
 // Order Product
-router.patch('/order', isLogin, orderInfo)
-router.patch('/address', saveAddress)
-router.get('/order_detail/:id', getData)
+router.patch('/order', isLogin, orderInfo);
+router.patch('/address', saveAddress);
+router.get('/order_detail/:id', getData);
+router.get('/user_orders', isLogin, userOrders);
 
 export {router}
