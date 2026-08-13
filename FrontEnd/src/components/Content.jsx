@@ -10,8 +10,8 @@ const Content = () => {
     return (
         <div className='min-h-screen w-full pb-10 bg-gray-200 flex flex-col gap-5  '>
             {/* Crosele */}
-            <div className='h-[55vh] w-full'>
-                <img className='h-full w-full object-cover'
+            <div className='h-fit w-full'>
+                <img className='h-full w-full object-contain'
                     src="https://images.meesho.com/images/marketing/1767796583251.webp" alt="" />
             </div>
 

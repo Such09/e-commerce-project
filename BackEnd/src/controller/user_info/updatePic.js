@@ -42,13 +42,9 @@ export const updatePic = async (req, res) => {
             });
         }
 
-        console.log("cloudinary result: ", result)
-        console.log("user1: ", user);
         // Picture is save successfully on cloudinary and Save picture in database
         user.picture = result.secure_url;
         await user.save();
-
-        console.log("user: ", user);
 
         return res.status(200).json({
             message: "profile picture updated successfully.",

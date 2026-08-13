@@ -3,7 +3,6 @@ import { Product } from "../moduls/product.js";
 import jwt from "jsonwebtoken";
 import apiError from "../utility/apiError.js";
 import { asyncHandler } from "../utility/asyncHandler.js";
-import { log } from "console";
 
 export const orderInfo = asyncHandler(async (req, res) => {
     const { product_id } = req.body

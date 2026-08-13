@@ -21,7 +21,7 @@ const Orders = () => {
         getData();
     }, [])
     return (
-        <div className='h-screen w-full flex '>
+        <div className='min-h-screen w-full flex '>
             <div className='md:w-2/3 h-full w-full px-3 py-4 flex flex-col gap-3'>
                 {
                     loading

@@ -11,9 +11,6 @@ const SearchingData = () => {
   const data = location.state[0]
   const data1 = location.state[1]
 
-  console.log('data is: ', data);
-  console.log('data is: ', data1);
-
   return (
     <div className='min-h-screen w-full py-3 px-3 flex gap-4 bg-gray-200'>
       {/* Filters */}
