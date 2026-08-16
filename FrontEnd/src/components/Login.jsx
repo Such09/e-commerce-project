@@ -31,8 +31,12 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const user = await axios.post(`http://localhost:4000/ecommerce/v1/register`, inputs)
-            successtoast(user.data.message)
+            if (inputs.password.length >= 8 && inputs.password.length <= 12) {
+                const user = await axios.post(`http://localhost:4000/ecommerce/v1/register`, inputs)
+                successtoast(user.data.message)
+            }else{
+                warningtoast("Password length between 8 to 12 char.")
+            }
 
         } catch (error) {
             errortoast(error.response.data.message)
@@ -50,14 +54,14 @@ const Login = () => {
 
         try {
             const login = await axios.post(`http://localhost:4000/ecommerce/v1/login`, loginDtail, { withCredentials: true })
-            
+
             successtoast(login.data.message)
 
             navigate('/app')
         } catch (error) {
             errortoast(error.response.data.message)
-            console.log("error: ", error);
-            
+            console.log("error: ", error.response);
+            console.log(error.response.data.message)
 
         } finally {
             setLoginDtail({
@@ -126,6 +130,7 @@ const Login = () => {
                         <input type="password" placeholder='enter password' name='password' required
                             onChange={loginData}
                             value={loginDtail.password}
+
                             className='h-12 w-full px-3 outline-none rounded-xl text font-medium text-gray-100 border-2 border-amber-100' />
 
                         <button className='bg-white h-12 w-full mt-5 rounded-xl text font-medium text-black active:scale-95'>

@@ -41,43 +41,37 @@ export const loginUser = asyncHandler(async (req, res) => {
         throw new apiError(401, "Something went wrong.")
     }
 
-    bcrypt.compare(password, user.password, (err, result) => {
-        if (result) {
-            console.log('login successfully.');
+    const result = await bcrypt.compare(password, user.password)
+    if (result) {
+        const accessToken = jwt.sign({ id: user._id, email: email }, `${process.env.JWT_ACCESS_SCREATE}`, { expiresIn: `${process.env.ACCESS_TIME}` });
+        const refreshToken = jwt.sign({ id: user._id, email: email }, `${process.env.JWT_REFRESH_SCREATE}`, { expiresIn: `${process.env.REFRESH_TIME}` });
 
-            const accessToken = jwt.sign({ id: user._id, email: email }, `${process.env.JWT_ACCESS_SCREATE}`, { expiresIn: `${process.env.ACCESS_TIME}` });
-            const refreshToken = jwt.sign({ id: user._id, email: email }, `${process.env.JWT_REFRESH_SCREATE}`, { expiresIn: `${process.env.REFRESH_TIME}` });
+        // Set Token in browser
+        res.cookie("accessToken", accessToken, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            maxAge: 10 * 60 * 1000
+        });
 
-            // Set Token in browser
-            res.cookie("accessToken", accessToken, {
-                httpOnly: true,
-                secure: false,
-                sameSite: "lax",
-                maxAge: 10 * 60 * 1000
-            });
+        res.cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            maxAge: 15 * 60 * 1000
+        });
 
-            res.cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                secure: false,
-                sameSite: "lax",
-                maxAge: 15 * 60 * 1000
-            });
+        // Set Token in database
+        user.refreshToken = refreshToken;
+        user.save();
 
-            // Set Token in database
-            user.refreshToken = refreshToken;
-            user.save();
-
-            return res.status(200).json(new apiResponse(
-                200,
-                "Login Successfully."
-            ));
-
-        }else{
-             throw new apiError(401, "Something went wrong.")
-        }
-    })
-
-    // throw new apiError(401, "Something went wrong.")
+        return res.status(200).json(new apiResponse(
+            200,
+            "Login Successfully."
+        ));
+    }else{
+        throw new apiError(401, "Something went wrong")
+    }
 })
 
 export const logoutUser = asyncHandler(async (req, res) => {
