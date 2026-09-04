@@ -34,11 +34,11 @@ const Shirt_card = () => {
     const addToCart = async (id) => {
         try {
             if (isAddCart) {
-                const response = await axios.post(`http://localhost:4000/ecommerce/v1/add_cart`, { id }, { withCredentials: true })
+                const response = await axios.post(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/add_cart`, { id }, { withCredentials: true })
                 successtoast(response.data.message)
 
             } else {
-                const response = await axios.put(`http://localhost:4000/ecommerce/v1/remove_cart`, { id }, { withCredentials: true })
+                const response = await axios.put(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/remove_cart`, { id }, { withCredentials: true })
                 successtoast(response.data.message)
             }
         } catch (error) {
