@@ -6,7 +6,7 @@ import { errorMiddleware } from './src/middleware/errorMiddleware.js';
 const app = express();
 
 app.use(cors({
-    origin: `http://localhost:5173`,
+    origin: `https://e-commerce-project-six-umber.vercel.app`,
     credentials: true
 }));
 
