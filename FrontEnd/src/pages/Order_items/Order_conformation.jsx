@@ -10,7 +10,7 @@ const Order_conformation = () => {
 
   const orderInfo = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/ecommerce/v1/order_detail/${id.id}`, { withCredentials: true })
+      const response = await axios.get(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/order_detail/${id.id}`, { withCredentials: true })
       setInfo(response.data)
 
     } catch (error) {

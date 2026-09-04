@@ -32,7 +32,7 @@ const Login = () => {
 
         try {
             if (inputs.password.length >= 8 && inputs.password.length <= 12) {
-                const user = await axios.post(`http://localhost:4000/ecommerce/v1/register`, inputs)
+                const user = await axios.post(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/register`, inputs)
                 successtoast(user.data.message)
             }else{
                 warningtoast("Password length between 8 to 12 char.")
@@ -53,7 +53,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const login = await axios.post(`http://localhost:4000/ecommerce/v1/login`, loginDtail, { withCredentials: true })
+            const login = await axios.post(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/login`, loginDtail, { withCredentials: true })
 
             successtoast(login.data.message)
 

@@ -22,7 +22,7 @@ const Order_form = () => {
         e.preventDefault()
     
         try {
-            const response = await axios.patch(`http://localhost:4000/ecommerce/v1/address`, inputs, { withCredentials: true })
+            const response = await axios.patch(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/address`, inputs, { withCredentials: true })
             // console.log(response.data.message);
             navigate(`/app/order/order_con/${p_id}`)
         } catch (error) {

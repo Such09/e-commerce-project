@@ -15,7 +15,7 @@ const Watch = () => {
 
   const data = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/ecommerce/v1/find_product?items=watch`)
+      const response = await axios.get(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/find_product?items=watch`)
 
       setWatches(response.data.data)
     } catch (error) {

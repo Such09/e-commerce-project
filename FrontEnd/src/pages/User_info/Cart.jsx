@@ -11,7 +11,7 @@ const Cart = () => {
     // Fetch cart-Data
     const cartData = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/ecommerce/v1/cart_item`, { withCredentials: true })
+            const response = await axios.get(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/cart_item`, { withCredentials: true })
             // console.log("res is: ", response);
             setCarts(response.data.data)
         } catch (error) {
@@ -23,7 +23,7 @@ const Cart = () => {
     // Remove Cart form Cart collection.
     const removeCart = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:4000/ecommerce/v1/remove_cart`, { id }, { withCredentials: true })
+            const response = await axios.put(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/remove_cart`, { id }, { withCredentials: true })
             successtoast(response.data.message)
 
         } catch (error) {

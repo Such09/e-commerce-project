@@ -8,7 +8,7 @@ const Con_1st = () => {
 
     const getData = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/ecommerce/v1/firstcon`)
+            const response = await axios.get(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/firstcon`)
             dispatch(collection_1(response.data.data))
         } catch (error) {
             console.log('error is: ', error.response.data);

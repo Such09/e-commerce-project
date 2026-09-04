@@ -13,7 +13,7 @@ const NavBar = () => {
     // Logout user
     const logoutUser = async () => {
         try {
-            const responce = await axios.get(`http://localhost:4000/ecommerce/v1/logout`, { withCredentials: true })
+            const responce = await axios.get(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/logout`, { withCredentials: true })
             console.log('logout: ', responce.data);
 
             successtoast(responce.data.message)
@@ -29,7 +29,7 @@ const NavBar = () => {
     const searchProduct = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`http://localhost:4000/ecommerce/v1/product?search=${search}`)
+            const response = await axios.get(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/product?search=${search}`)
 
             await navigate('/app/search/product', {     // Navigate the searching page.
                 state: [

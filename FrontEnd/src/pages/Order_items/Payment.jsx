@@ -15,7 +15,7 @@ const Payment = () => {
 
     const getData = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/ecommerce/v1/product_id/${id.id}`)
+            const response = await axios.get(`https://e-commerce-project-2-72zj.onrender.com/ecommerce/v1/product_id/${id.id}`)
             setInfo(response.data.data)
 
         } catch (error) {
