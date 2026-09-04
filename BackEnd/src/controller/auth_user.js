@@ -49,16 +49,16 @@ export const loginUser = asyncHandler(async (req, res) => {
         // Set Token in browser
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
-            maxAge: 10 * 60 * 1000
+            secure: true,
+            sameSite: "none",
+            maxAge: 60 * 60 * 1000
         });
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: false,
-            sameSite: "lax",
-            maxAge: 15 * 60 * 1000
+            secure: true,
+            sameSite: "none",
+            maxAge: 24 * 60 * 60 * 1000
         });
 
         // Set Token in database
